@@ -53,3 +53,10 @@
   background-color: #e2e2e2;
   border: none;
 }
+
+@media (max-width: 1050px) {
+  .explore--menu__paragraph {
+    max-width: 100%;
+    font-size: 14px;
+  }
+}

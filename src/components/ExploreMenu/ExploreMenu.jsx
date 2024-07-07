@@ -1,18 +1,21 @@
 /* eslint-disable no-unused-vars */
 import "./ExploreMenu.css";
 import { menu_list } from "../../assets/assets";
+import { useContext } from "react";
+import { StoreContext } from "../../context/StoreContext";
 // import PropTypes from "prop-types";
 
 // eslint-disable-next-line react/prop-types
-const ExploreMenu = ({ category, setCategory }) => {
-  const handleClick = (menu_item) => {
-    console.log(menu_item);
-    setCategory((prev) => (prev === menu_item ? "All" : menu_item));
-    console.log(category, "HELLO");
-  };
+const ExploreMenu = () => {
+  const { category, updateCategory } = useContext(StoreContext);
+  // const handleClick = (menu_item) => {
+  //   console.log(menu_item);
+  //   setCategory((prev) => (prev === menu_item ? "All" : menu_item));
+  //   console.log(category, "HELLO");
+  // };
 
   return (
-    <div className="explore-menu">
+    <div className="explore-menu" id="explore-menu">
       <h1 className="explore--menu__heading"> Explore our menu </h1>
       <p className="explore--menu__paragraph">
         Choose from a diverse menu featuring a delectable array of dishes
@@ -23,7 +26,7 @@ const ExploreMenu = ({ category, setCategory }) => {
         {menu_list.map((item, index) => {
           return (
             <div
-              onClick={() => handleClick(item.menu_name)}
+              onClick={() => updateCategory(item.menu_name)}
               key={index}
               className="explore--menu__list__item"
             >
