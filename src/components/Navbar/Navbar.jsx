@@ -1,14 +1,15 @@
 /* eslint-disable no-unused-vars */
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { assets } from "../../assets/assets";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
+import { StoreContext } from "../../context/StoreContext";
 
 // eslint-disable-next-line react/prop-types
 const Navbar = ({ showLogin, setShowLogin }) => {
   const [menu, setMenu] = useState("home");
-
+  const { getTotalCartAmount } = useContext(StoreContext);
   const handleClick = (menuOption) => {
     setMenu(menuOption);
   };
@@ -73,7 +74,11 @@ const Navbar = ({ showLogin, setShowLogin }) => {
               alt=""
             />{" "}
           </Link>
-          <div className="navbar__right__basket__icon__dot"></div>
+          <div
+            className={
+              getTotalCartAmount() > 0 ? "navbar__right__basket__icon__dot" : ""
+            }
+          ></div>
         </div>
         <div>
           <button

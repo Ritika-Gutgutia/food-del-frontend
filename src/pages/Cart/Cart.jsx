@@ -3,9 +3,13 @@ import { useContext } from "react";
 import "./Cart.css";
 import { StoreContext } from "../../context/StoreContext";
 import FoodItem from "../../components/FoodItem/FoodItem";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const { cartItems, food_list, removeFromCart } = useContext(StoreContext);
+  const { cartItems, food_list, removeFromCart, getTotalCartAmount } =
+    useContext(StoreContext);
+
+  const navigate = useNavigate();
 
   const handleCrossClick = (item) => {
     removeFromCart(item._id);
@@ -52,20 +56,27 @@ const Cart = () => {
           <div>
             <div className="cart__bottom__total__details">
               <p>Subtotal</p>
-              <p>{0}</p>
+              <p>{getTotalCartAmount()}</p>
             </div>
             <hr className="cart__bottom__total__hr" />
             <div className="cart__bottom__total__details">
               <p> Delivery Fee </p>
-              <p>{2}</p>
+              <p>{getTotalCartAmount() > 0 ? 80 : 0}</p>
             </div>
             <hr className="cart__bottom__total__hr" />
             <div className="cart__bottom__total__details">
               <b>Total</b>
-              <b>{0}</b>
+              <b>
+                {getTotalCartAmount() + (getTotalCartAmount() > 0 ? 80 : 0)}
+              </b>
             </div>
           </div>
-          <button className="cart__bottom__button">PROCEED TO CHECKOUT</button>
+          <button
+            onClick={() => navigate("/order")}
+            className="cart__bottom__button"
+          >
+            PROCEED TO CHECKOUT
+          </button>
         </div>
         <div className="cart__bottom__promocode">
           <div>

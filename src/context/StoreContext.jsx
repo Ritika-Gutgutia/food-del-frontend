@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
 import { food_list } from "../assets/assets";
@@ -29,19 +30,25 @@ const StoreContextProvider = (props) => {
     }));
   };
 
-  // const getTotalCartAmount = () => {
-  //   let totalAmount = 0;
+  const getTotalCartAmount = () => {
+    let totalAmount = 0;
 
-  //   {
-  //     food_list.map((item, index) => {
-  //       if (cartItems[item._id] > 0) {
-  //         totalAmount += 80;
-  //       }
-  //     });
-  //   }
+    // food_list.map((item, index) => {
+    //   if (cartItems[item] > 0) {
+    //     totalAmount += 80;
+    //   }
+    // });
+    // food_list.forEach();
 
-  //   return totalAmount;
-  // };
+    for (const item in cartItems) {
+      if (cartItems[item] > 0) {
+        let itemInfo = food_list.find((product) => product._id == item);
+        totalAmount += itemInfo.price * cartItems[item] * 80;
+      }
+    }
+
+    return totalAmount;
+  };
 
   const updateCategory = (itemCategory) => {
     setCategory(itemCategory);
@@ -56,6 +63,7 @@ const StoreContextProvider = (props) => {
     category,
     updateCategory,
     // getTotalCartAmount,
+    getTotalCartAmount,
   };
 
   return (

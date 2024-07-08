@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import "./LoginPopup.css";
 import { assets } from "../../assets/assets";
