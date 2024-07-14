@@ -6,7 +6,7 @@ import FoodItem from "../../components/FoodItem/FoodItem";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const { cartItems, food_list, removeFromCart, getTotalCartAmount } =
+  const { cartItems, food_list, removeFromCart, getTotalCartAmount, url } =
     useContext(StoreContext);
 
   const navigate = useNavigate();
@@ -32,11 +32,11 @@ const Cart = () => {
             return (
               <>
                 <div key={index} className="cart-items__title cart-items__item">
-                  <img src={item.image} alt="" />
+                  <img src={url + "/uploads/" + item.image} alt="" />
                   <p>{item.name}</p>
-                  <p>Rs.{item.price * 80}</p>
+                  <p>Rs.{item.price}</p>
                   <p>{cartItems[item._id]}</p>
-                  <p>Rs.{item.price * 80 * cartItems[item._id]}</p>
+                  <p>Rs.{item.price * cartItems[item._id]}</p>
                   <p
                     onClick={() => handleCrossClick(item)}
                     className="cart-items__cross"

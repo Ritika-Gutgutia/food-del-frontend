@@ -5,7 +5,8 @@ import { StoreContext } from "../../context/StoreContext";
 import "./FoodItem.css";
 
 const FoodItem = ({ id, name, price, description, img }) => {
-  const { cartItems, addToCart, removeFromCart } = useContext(StoreContext);
+  const { cartItems, addToCart, removeFromCart, url } =
+    useContext(StoreContext);
   console.log(id);
   // const handleClickAddIcon = () => {
   //   setItemCount((prevCount) => prevCount + 1);
@@ -13,11 +14,15 @@ const FoodItem = ({ id, name, price, description, img }) => {
 
   // const handleClickRemoveIcon = () => {
   //   setItemCount((prevCount) => prevCount - 1);
-  // };
+  //b };
   return (
     <div className="food-item">
       <div className="food-item__container">
-        <img className="food-item__container__img" src={img} alt="" />
+        <img
+          className="food-item__container__img"
+          src={url + "/uploads/" + img}
+          alt=""
+        />
         {!cartItems[id] ? (
           <img
             className="food-item__container__add"
@@ -51,7 +56,7 @@ const FoodItem = ({ id, name, price, description, img }) => {
           />
         </div>
         <p className="food-item__info__desc">{description}</p>
-        <p className="food-item__info__price">Rs.{price * 80}</p>
+        <p className="food-item__info__price">Rs.{price}</p>
       </div>
     </div>
   );
