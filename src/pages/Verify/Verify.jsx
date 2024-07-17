@@ -9,14 +9,19 @@ const Verify = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const success = searchParams.get("success");
   const orderId = searchParams.get("orderId");
-  const { url } = useContext(StoreContext);
+  const { url, token } = useContext(StoreContext);
   const navigate = useNavigate();
   const verifyPayment = async () => {
-    const response = await axios.post(url + "/api/order/verify", {
-      success,
-      orderId,
-    });
+    const response = await axios.post(
+      url + "/api/order/verify",
+      {
+        success,
+        orderId,
+      },
+      { headers: { token } }
+    );
 
+    console.log(response.data, "Verify debugging");
     if (response.data.success === "true") {
       navigate("/myorders");
     } else {

@@ -100,10 +100,9 @@ const Navbar = ({ showLogin, setShowLogin }) => {
             <div className="navbar__right__profile">
               <img src={assets.profile_icon} alt="" />
               <ul className="navbar__right__profile__dropdown">
-                <li>
-                  {" "}
+                <li onClick={() => navigate("/myorders")}>
                   <img src={assets.bag_icon} alt="" />
-                  <Link to={`${url}/orders`}>Orders</Link>
+                  <p>Orders</p>
                 </li>
                 <hr />
                 <li>
