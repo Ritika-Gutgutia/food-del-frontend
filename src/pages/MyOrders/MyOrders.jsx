@@ -19,6 +19,9 @@ const MyOrders = () => {
     console.log(response.data, "HELLOO", token);
   };
 
+  const trackOrderHandler = async () => {
+    await fetchOrders();
+  };
   useEffect(() => {
     if (token) {
       fetchOrders();
@@ -48,7 +51,7 @@ const MyOrders = () => {
               <p>
                 <span>&#x25cf;</span> <b>{order.status}</b>{" "}
               </p>
-              <button>Track order</button>
+              <button onClick={() => trackOrderHandler()}>Track order</button>
             </div>
           );
         })}
