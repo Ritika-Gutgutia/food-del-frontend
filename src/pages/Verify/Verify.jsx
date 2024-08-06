@@ -23,6 +23,7 @@ const Verify = () => {
 
     console.log(response.data, "Verify debugging");
     if (response.data.success === "true") {
+      console.log("PAYMENT DONE");
       navigate("/myorders");
     } else {
       navigate("/");

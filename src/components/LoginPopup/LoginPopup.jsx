@@ -11,10 +11,12 @@ import axios from "axios";
 const LoginPopup = ({ showLogin, setShowLogin }) => {
   const { url, token, setToken } = useContext(StoreContext);
   const [currState, setCurrState] = useState("Sign Up");
+
   const [data, setData] = useState({
     name: "",
     email: "",
     password: "",
+    otp: "",
   });
   // useEffect(() => {
   //   console.log(data);
@@ -31,22 +33,31 @@ const LoginPopup = ({ showLogin, setShowLogin }) => {
     });
   };
 
-  const onLogin = async (event) => {
+  const onFormSubmit = async (event) => {
     console.log("On login in process");
     event.preventDefault();
     let newUrl = url;
 
     if (currState === "Login") {
       newUrl += "/api/user/login";
+    } else if (currState === "Sign Up") {
+      newUrl += "/api/user/sendOtp";
+      // setCurrState("Get Otp");
     } else {
       newUrl += "/api/user/register";
     }
 
+    console.log(newUrl, data.otp);
+
     const response = await axios.post(newUrl, data);
     if (response.data.success) {
-      setToken(response.data.token);
-      localStorage.setItem("token", response.data.token);
-      setShowLogin(false);
+      if (currState === "Sign Up") {
+        setCurrState("Get Otp");
+      } else {
+        setToken(response.data.token);
+        localStorage.setItem("token", response.data.token);
+        setShowLogin(false);
+      }
     } else {
       alert(response.data.message);
     }
@@ -67,9 +78,11 @@ const LoginPopup = ({ showLogin, setShowLogin }) => {
   const handleAlreadyHaveAccClick = () => {
     setCurrState("Login");
   };
+
   return (
     <div className="loginPopup">
-      <form onSubmit={onLogin} className="loginPopup__container">
+      {/* {currState === "Sign Up" ?  : } */}
+      <form onSubmit={onFormSubmit} className="loginPopup__container">
         <div className="loginPopup__container__title">
           <h2>{currState}</h2>
           <img
@@ -80,39 +93,67 @@ const LoginPopup = ({ showLogin, setShowLogin }) => {
           />
         </div>
         <div className="loginPopup__inputs">
-          {/* {currState === "Login"} */}
-          <input
-            onChange={onChangeHandler}
-            className="loginPopup__inputs__input"
-            name="name"
-            value={data.name}
-            type="text"
-            placeholder="Your name"
-            required
-          />
-          <input
-            onChange={onChangeHandler}
-            className="loginPopup__inputs__input"
-            name="email"
-            value={data.email}
-            type="email"
-            placeholder="Your email"
-            required
-          />
+          {currState === "Get Otp" ? (
+            <input
+              onChange={onChangeHandler}
+              className="loginPopup__inputs__input"
+              name="name"
+              value={data.name}
+              type="text"
+              placeholder="Your name"
+              required
+            />
+          ) : (
+            <></>
+          )}
+          {currState === "Sign Up" || currState === "Login" ? (
+            <input
+              onChange={onChangeHandler}
+              className="loginPopup__inputs__input"
+              name="email"
+              value={data.email}
+              type="email"
+              placeholder="Your email"
+              required
+            />
+          ) : (
+            <></>
+          )}
+          {currState === "Login" || currState === "Get Otp" ? (
+            <input
+              onChange={onChangeHandler}
+              className="loginPopup__inputs__input"
+              name="password"
+              value={data.password}
+              type="password"
+              placeholder="Password"
+              required
+            />
+          ) : (
+            <></>
+          )}
 
-          <input
-            onChange={onChangeHandler}
-            className="loginPopup__inputs__input"
-            name="password"
-            value={data.password}
-            type="password"
-            placeholder="Password"
-            required
-          />
+          {currState === "Get Otp" ? (
+            <input
+              onChange={onChangeHandler}
+              className="loginPopup__inputs__input"
+              name="otp"
+              value={data.otp}
+              type="text"
+              placeholder="OTP"
+              required
+            />
+          ) : (
+            <></>
+          )}
         </div>
         <button type="submit" className="loginPopup__container__button">
           {" "}
-          {currState === "Sign Up" ? "Create account" : "Login"}
+          {currState === "Sign Up"
+            ? "GET OTP"
+            : currState === "Get Otp"
+            ? "Create account"
+            : "Login"}
         </button>
         <div className="loginPopup__condition">
           <input

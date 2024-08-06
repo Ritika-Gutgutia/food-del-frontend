@@ -10,6 +10,8 @@
 
 body {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 a {
@@ -18,8 +20,19 @@ a {
 }
 
 .app {
+  min-height: 100vh;
+  display: flex;
+
+  flex-direction: column;
+}
+
+.app__main {
   width: 80%;
-  margin: auto;
+  margin: 1rem auto;
+}
+
+.app__footer {
+  margin-top: auto;
 }
 
 @keyframes fadeIn {

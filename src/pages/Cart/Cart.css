@@ -53,7 +53,7 @@
 .cart__bottom__button {
   border: none;
   color: white;
-  background-color: tomato;
+  background-color: #d6981c;
   width: max(15vw, 200px);
   padding: 12px 0;
   border-radius: 4px;

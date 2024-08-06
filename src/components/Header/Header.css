@@ -1,8 +1,8 @@
 .header {
   height: 34vw;
   margin: 2rem auto;
-  background: url("/header_img.png") no-repeat;
-  background-size: contain;
+  background: url("/headers_delivery_final.jpg") no-repeat;
+  background-size: 100vw;
   position: relative;
 }
 
@@ -12,7 +12,7 @@
   flex-direction: column;
   align-items: start;
   gap: 1.5vw;
-  max-width: 50%;
+  max-width: 55%;
   bottom: 10%;
   left: 6vw;
   animation: fadeIn 3s;

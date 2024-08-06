@@ -9,8 +9,8 @@
 
 .food-display__list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
-  margin-top: 2rem;
-  gap: 2rem;
-  row-gap: 3rem;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  margin-top: 30px;
+  gap: 30px;
+  row-gap: 50px;
 }

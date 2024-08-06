@@ -6,6 +6,7 @@ import { StoreContext } from "../../context/StoreContext";
 // import PropTypes from "prop-types";
 
 // eslint-disable-next-line react/prop-types
+
 const ExploreMenu = () => {
   const { category, updateCategory } = useContext(StoreContext);
   // const handleClick = (menu_item) => {

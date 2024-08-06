@@ -22,9 +22,6 @@ const PlaceOrder = () => {
   });
 
   const navigate = useNavigate();
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
 
   const onChangeHandler = (event) => {
     const name = event.target.name;
@@ -39,7 +36,7 @@ const PlaceOrder = () => {
   const placeOrder = async (event) => {
     event.preventDefault();
     let orderItems = [];
-
+    console.log("HELLOO");
     food_list.map((item) => {
       if (cartItems[item._id] > 0) {
         let itemInfo = item;
@@ -48,7 +45,7 @@ const PlaceOrder = () => {
       }
     });
 
-    // console.log(orderItems);
+    console.log(orderItems, "Order Items");
 
     let orderData = {
       address: data,
@@ -56,23 +53,23 @@ const PlaceOrder = () => {
       amount: getTotalCartAmount() > 0 ? getTotalCartAmount() + 80 : 0,
     };
 
-    let respone = await axios.post(url + "/api/order/place", orderData, {
+    let response = await axios.post(url + "/api/order/place", orderData, {
       headers: { token },
     });
-
-    if (respone.data.success) {
-      const { session_url } = respone.data;
+    console.log(response.data.success);
+    if (response.data.success) {
+      const session_url = response.data.session_url;
       window.location.replace(session_url);
     } else {
       alert("Error");
     }
   };
 
-  useEffect(() => {
-    if (!token || getTotalCartAmount() === 0) {
-      navigate("/cart");
-    }
-  }, [token]);
+  // useEffect(() => {
+  //   if (!token || getTotalCartAmount() === 0) {
+  //     navigate("/cart");
+  //   }
+  // }, [token, getTotalCartAmount]);
 
   return (
     <form onSubmit={placeOrder} className="place-order">
@@ -181,7 +178,7 @@ const PlaceOrder = () => {
             <b>{getTotalCartAmount() + (getTotalCartAmount() > 0 ? 80 : 0)}</b>
           </div>
         </div>
-        <button type="Submit" className="cart__bottom__button">
+        <button type="submit" className="cart__bottom__button">
           PROCEED TO PAYMENT
         </button>
       </div>

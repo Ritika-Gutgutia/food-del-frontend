@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 /* eslint-disable react/prop-types */
 import { useContext } from "react";
 import { assets } from "../../assets/assets";
@@ -17,21 +18,17 @@ const FoodItem = ({ id, name, price, description, img }) => {
   //b };
   return (
     <div className="food-item">
-      <div className="food-item__container">
-        <img
-          className="food-item__container__img"
-          src={url + "/uploads/" + img}
-          alt=""
-        />
-        {!cartItems[id] ? (
+      <div className="food-item__img__container">
+        <img className="food-item__img" src={url + "/uploads/" + img} alt="" />
+        {!cartItems || !(id in cartItems) ? (
           <img
-            className="food-item__container__add"
+            className="food-item__add"
             onClick={() => addToCart(id)}
             src={assets.add_icon_white}
             alt="addIcon"
           />
         ) : (
-          <div className="food-item__container__counter">
+          <div className="food-item__counter">
             <img
               onClick={() => removeFromCart(id)}
               src={assets.remove_icon_red}

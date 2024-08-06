@@ -24,6 +24,9 @@
   gap: 1.25rem;
 }
 
+.footer__content__left__app {
+  color: #d6981c;
+}
 .footer__content__center li,
 .footer__content__right li {
   list-style: none;

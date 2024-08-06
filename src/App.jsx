@@ -20,16 +20,20 @@ const App = () => {
         <></>
       )}
       <div className="app">
-        <Navbar showLogin={showLogin} setShowLogin={setShowLogin} />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/order" element={<PlaceOrder />} />
-          <Route path="/verify" element={<Verify />} />
-          <Route path="/myorders" element={<MyOrders />} />
-        </Routes>
+        <main className="app__main">
+          <Navbar showLogin={showLogin} setShowLogin={setShowLogin} />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/order" element={<PlaceOrder />} />
+            <Route path="/verify" element={<Verify />} />
+            <Route path="/myorders" element={<MyOrders />} />
+          </Routes>
+        </main>
+        <div className="app__footer">
+          <Footer />
+        </div>
       </div>
-      <Footer />
     </>
   );
 };

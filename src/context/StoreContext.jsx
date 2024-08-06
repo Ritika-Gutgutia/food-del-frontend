@@ -5,7 +5,7 @@ import axios from "axios";
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
-  const url = "http://localhost:5000";
+  const url = "https://food-del-backend-g81o.onrender.com";
   const [cartItems, setCartItems] = useState({});
   const [category, setCategory] = useState("All");
   const [token, setToken] = useState("");
@@ -13,7 +13,7 @@ const StoreContextProvider = (props) => {
   //adding to cart functionality
 
   const addToCart = async (itemId) => {
-    if (!cartItems[itemId]) {
+    if (cartItems && !(itemId in cartItems)) {
       setCartItems((prev) => ({
         ...prev,
         [itemId]: 1,
@@ -72,7 +72,7 @@ const StoreContextProvider = (props) => {
     for (const item in cartItems) {
       if (cartItems[item] > 0) {
         let itemInfo = food_list.find((product) => product._id == item);
-        totalAmount += itemInfo.price * cartItems[item];
+        if (itemInfo) totalAmount += itemInfo.price * cartItems[item];
       }
     }
 

@@ -9,7 +9,7 @@ import { StoreContext } from "../../context/StoreContext";
 // eslint-disable-next-line react/prop-types
 const Navbar = ({ showLogin, setShowLogin }) => {
   const [menu, setMenu] = useState("home");
-  const { getTotalCartAmount, token, setToken, url } = useContext(StoreContext);
+  const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
   const handleClick = (menuOption) => {
     setMenu(menuOption);
   };
@@ -27,11 +27,12 @@ const Navbar = ({ showLogin, setShowLogin }) => {
     setToken("");
     navigate("/");
   };
+
   return (
     <div className="navbar">
       <Link to="/">
         {" "}
-        <img src={assets.logo} className="navbar__logo" alt="logo" />{" "}
+        <h1 className="navbar__app">FoodMato</h1>
       </Link>
       <ul className="navbar__menu">
         <Link
