@@ -6,7 +6,7 @@ export const StoreContext = createContext(null);
 import { toast } from "react-toastify";
 
 const StoreContextProvider = (props) => {
-  const url = "https://food-del-backend-lpvm.onrender.com";
+  const url = "https://food-del-backend-g81o.onrender.com";
   const [cartItems, setCartItems] = useState({});
   const [category, setCategory] = useState("All");
   const [token, setToken] = useState("");
