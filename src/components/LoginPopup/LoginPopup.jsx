@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 // eslint-disable-next-line react/prop-types
 const LoginPopup = ({ showLogin, setShowLogin }) => {
@@ -53,13 +54,18 @@ const LoginPopup = ({ showLogin, setShowLogin }) => {
     if (response.data.success) {
       if (currState === "Sign Up") {
         setCurrState("Get Otp");
+        toast.success("OTP sent successfully");
       } else {
         setToken(response.data.token);
         localStorage.setItem("token", response.data.token);
+        if (currState === "Login") toast.success("Successfully logged in");
+        else {
+          toast.success("Successfully registered ");
+        }
         setShowLogin(false);
       }
     } else {
-      alert(response.data.message);
+      toast.error(response.data.message);
     }
     // const formData = new FormData();
     // formData.append("name", data.name);

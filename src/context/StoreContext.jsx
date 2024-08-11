@@ -3,9 +3,10 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 export const StoreContext = createContext(null);
+import { toast } from "react-toastify";
 
 const StoreContextProvider = (props) => {
-  const url = "https://food-del-backend-g81o.onrender.com";
+  const url = "http://localhost:5000";
   const [cartItems, setCartItems] = useState({});
   const [category, setCategory] = useState("All");
   const [token, setToken] = useState("");
@@ -37,11 +38,12 @@ const StoreContextProvider = (props) => {
   };
 
   const removeFromCart = async (itemId) => {
-    setCartItems((prev) => ({
-      ...prev,
-      [itemId]: prev[itemId] - 1,
-    }));
-
+    if (cartItems[itemId] > 0) {
+      setCartItems((prev) => ({
+        ...prev,
+        [itemId]: prev[itemId] - 1,
+      }));
+    }
     if (token) {
       await axios.post(
         url + "/api/cart/remove",
@@ -86,8 +88,11 @@ const StoreContextProvider = (props) => {
 
     if (response.data.success) {
       setFoodList(response.data.data);
+      console.log("Before calling toast");
+      // toast.success(response.data.message);
+      console.log("YYAYY");
     } else {
-      alert("Error in fetching food");
+      toast.error(response.data.message);
     }
   };
 

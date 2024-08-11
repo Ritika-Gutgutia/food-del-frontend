@@ -5,6 +5,7 @@ import { assets } from "../../assets/assets";
 import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
+import { toast } from "react-toastify";
 
 // eslint-disable-next-line react/prop-types
 const Navbar = ({ showLogin, setShowLogin }) => {
@@ -26,6 +27,7 @@ const Navbar = ({ showLogin, setShowLogin }) => {
     localStorage.removeItem("token");
     setToken("");
     navigate("/");
+    toast.success("Successfully logged out");
   };
 
   return (
