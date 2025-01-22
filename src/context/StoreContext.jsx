@@ -32,8 +32,6 @@ const StoreContextProvider = (props) => {
         { itemId },
         { headers: { token } }
       );
-
-      console.log("respone", response.data);
     }
   };
 
@@ -63,13 +61,6 @@ const StoreContextProvider = (props) => {
 
   const getTotalCartAmount = () => {
     let totalAmount = 0;
-
-    // food_list.map((item, index) => {
-    //   if (cartItems[item] > 0) {
-    //     totalAmount += 80;
-    //   }
-    // });
-    // food_list.forEach();
 
     for (const item in cartItems) {
       if (cartItems[item] > 0) {

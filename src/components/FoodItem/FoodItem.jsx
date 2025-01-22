@@ -8,14 +8,7 @@ import "./FoodItem.css";
 const FoodItem = ({ id, name, price, description, img }) => {
   const { cartItems, addToCart, removeFromCart, url } =
     useContext(StoreContext);
-  console.log(id);
-  // const handleClickAddIcon = () => {
-  //   setItemCount((prevCount) => prevCount + 1);
-  // };
 
-  // const handleClickRemoveIcon = () => {
-  //   setItemCount((prevCount) => prevCount - 1);
-  //b };
   return (
     <div className="food-item">
       <div className="food-item__img__container">

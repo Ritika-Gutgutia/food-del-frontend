@@ -20,6 +20,7 @@ const Cart = () => {
   const handleCrossClick = (item) => {
     removeFromCart(item._id);
   };
+
   return (
     <div className="cart">
       <div className="cart__items">

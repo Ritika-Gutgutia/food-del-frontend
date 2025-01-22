@@ -19,9 +19,7 @@ const LoginPopup = ({ showLogin, setShowLogin }) => {
     password: "",
     otp: "",
   });
-  // useEffect(() => {
-  //   console.log(data);
-  // }, [data]);
+
   const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -35,7 +33,6 @@ const LoginPopup = ({ showLogin, setShowLogin }) => {
   };
 
   const onFormSubmit = async (event) => {
-    console.log("On login in process");
     event.preventDefault();
     let newUrl = url;
 
@@ -43,14 +40,12 @@ const LoginPopup = ({ showLogin, setShowLogin }) => {
       newUrl += "/api/user/login";
     } else if (currState === "Sign Up") {
       newUrl += "/api/user/sendOtp";
-      // setCurrState("Get Otp");
     } else {
       newUrl += "/api/user/register";
     }
 
-    console.log(newUrl, data.otp);
-
     const response = await axios.post(newUrl, data);
+
     if (response.data.success) {
       if (currState === "Sign Up") {
         setCurrState("Get Otp");
@@ -67,10 +62,6 @@ const LoginPopup = ({ showLogin, setShowLogin }) => {
     } else {
       toast.error(response.data.message);
     }
-    // const formData = new FormData();
-    // formData.append("name", data.name);
-    // formData.append("email", data.email);
-    // formData.append("password", data.password);
   };
 
   const handleCrossIconClick = () => {

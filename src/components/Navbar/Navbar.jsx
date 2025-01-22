@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 const Navbar = ({ showLogin, setShowLogin }) => {
   const [menu, setMenu] = useState("home");
   const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
+
   const handleClick = (menuOption) => {
     setMenu(menuOption);
   };

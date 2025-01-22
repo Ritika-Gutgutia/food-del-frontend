@@ -9,11 +9,6 @@ import { StoreContext } from "../../context/StoreContext";
 
 const ExploreMenu = () => {
   const { category, updateCategory } = useContext(StoreContext);
-  // const handleClick = (menu_item) => {
-  //   console.log(menu_item);
-  //   setCategory((prev) => (prev === menu_item ? "All" : menu_item));
-  //   console.log(category, "HELLO");
-  // };
 
   return (
     <div className="explore-menu" id="explore-menu">

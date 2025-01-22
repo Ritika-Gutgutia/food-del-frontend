@@ -1,19 +1,25 @@
 .food-item {
-  width: 100%;
-
+  width: 250px; /* Fixed width for all food item cards */
+  height: 400px; /* Fixed height for consistency */
   margin: auto;
   border-radius: 1rem;
   box-shadow: 0 0 0.6rem #00000015;
   transition: 0.3s;
   animation: fadeIn 1s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
 }
 
 .food-item__img {
   width: 100%;
-  /* height: 25%; */
+  height: 200px; /* Fixed height for the image container */
   border-radius: 1rem 1rem 0 0;
+  object-fit: cover; /* Ensures the image fills the space without distortion */
 }
 
+/* Food name and rating styling */
 .food-item__info__name__rating__p {
   font-size: 1.25rem;
   font-weight: 500;
@@ -23,11 +29,15 @@
   width: 4.3rem;
 }
 
+/* Description styling */
 .food-item__info__desc {
   color: #676767;
   font-size: 0.75rem;
+  margin: 10px 0; /* Adds margin for spacing */
+  flex-grow: 1; /* Ensures description takes up remaining space */
 }
 
+/* Price styling */
 .food-item__info__price {
   color: tomato;
   font-size: 1.3rem;
@@ -35,6 +45,7 @@
   margin: 0.825rem 0;
 }
 
+/* Counter for managing cart items, positioned at the bottom */
 .food-item__counter {
   bottom: 15px;
   display: flex;
@@ -44,4 +55,12 @@
   padding: 6px;
   border-radius: 50px;
   background-color: white;
+}
+
+/* Media Query for Mobile Screens */
+@media (max-width: 650px) {
+  .food-item {
+    width: 95%; /* Take up more width on very small screens */
+    height: 400px; /* Adjust height */
+  }
 }

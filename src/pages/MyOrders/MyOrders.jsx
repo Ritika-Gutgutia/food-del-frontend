@@ -16,12 +16,12 @@ const MyOrders = () => {
     });
 
     setData(response.data.data);
-    console.log(response.data, "HELLOO", token);
   };
 
   const trackOrderHandler = async () => {
     await fetchOrders();
   };
+
   useEffect(() => {
     if (token) {
       fetchOrders();
